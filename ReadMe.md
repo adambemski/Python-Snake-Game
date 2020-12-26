@@ -75,3 +75,45 @@ while game_over is False:
     pygame.draw.rect(dis, blue, [200, 150, 10, 10])
     pygame.display.update()
 ```
+
+### Move the snake
+
+Before while loop add start point, movement calculation and time handler :
+```python
+x1 = 200
+y1 = 200
+
+x1_change = 0
+y1_change = 0
+
+clock = pygame.time.Clock()
+```
+
+To move snake will be used arrow keys. Put it inside while loop:
+```python
+while game_over is False:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            game_over = True
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_LEFT:
+                x1_change = -10
+                y1_change = 0
+            elif event.key == pygame.K_RIGHT:
+                x1_change = 10
+                y1_change = 0
+            elif event.key == pygame.K_UP:
+                y1_change = -10
+                x1_change = 0
+            elif event.key == pygame.K_DOWN:
+                y1_change = 10
+                x1_change = 0
+
+    x1 += x1_change
+    y1 += y1_change
+    dis.fill(black)  # can be used to change background
+    pygame.draw.rect(dis, blue, [x1, y1, 10, 10])
+    pygame.display.update()
+    clock.tick(30)
+```
+
