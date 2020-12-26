@@ -33,9 +33,17 @@ import pygame
 
 pygame.init()  # initialize pygame module
 
-dis=pygame.display.set_mode((400, 300))  # set screen dimensions
+dis = pygame.display.set_mode((400, 300))  # set screen dimensions
 pygame.display.update()  # apply changes in the game window
 ```
 
 ### Waiting for events
 
+While loop can avoid instant closing of game window:
+```python
+game_over = False
+while game_over is False:
+    for event in pygame.event.get():
+        print(event)  # prints out all the actions made on the screen
+```
+Here above console will print every event which will occur inside game window (like cursor movement or button press).
