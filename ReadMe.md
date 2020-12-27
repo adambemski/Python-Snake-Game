@@ -125,3 +125,27 @@ if x1 >= display_horizontal_size_x or x1 < 0 or y1 >= display_vertical_size_y or
     game_over = True
 ```
 At this stage to clean up code structure it was introduced configuration ini file.
+
+### Placing the food
+
+To place the food add this **before** while loop:
+```python
+food_x = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
+food_y = round(random.randrange(0, dis_width - snake_block) / 10.0) * 10.0
+```
+Also add this import statement at the beginning of code:
+```python
+import random
+```
+Drawing food block can be done over:
+```python
+pygame.draw.rect(dis, conf.red, [food_x, food_y, conf.snake_size, conf.snake_size])
+```
+Checking if food was caught by snake we can use:
+```python
+if x1 == food_x and y1 == food_y:
+    print("Food eaten!")
+```
+
+
+

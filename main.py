@@ -1,3 +1,4 @@
+import random
 import time
 
 import pygame
@@ -28,6 +29,9 @@ y1_change = 0
 
 clock = pygame.time.Clock()
 
+food_x = round(random.randrange(0, conf.display_horizontal_size_x - conf.snake_size) / 10.0) * 10.0
+food_y = round(random.randrange(0, conf.display_vertical_size_y - conf.snake_size) / 10.0) * 10.0
+
 game_over = False
 while game_over is False:
     for event in pygame.event.get():
@@ -54,8 +58,13 @@ while game_over is False:
     x1 += x1_change
     y1 += y1_change
     dis.fill(conf.black)  # allow change background
+    pygame.draw.rect(dis, conf.red, [food_x, food_y, conf.snake_size, conf.snake_size])
     pygame.draw.rect(dis, conf.blue, [x1, y1, conf.snake_size, conf.snake_size])
     pygame.display.update()
+
+    if x1 == food_x and y1 == food_y:
+        print("Food eaten!")
+
     clock.tick(conf.game_speed)
 
 message("Game Over", conf.red, font_style, conf.display_horizontal_size_x, conf.display_vertical_size_y)
