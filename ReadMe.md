@@ -175,3 +175,30 @@ Now on the top level call game_session()
 if __name__ == "__main__":
     game_session()
 ```
+
+### Adding new parts to snake
+
+Snake body is depicted as a list. To allow that snake can grow up - place inside main while loop:
+```python
+snake_head = (x1, y1)
+snake_list.append(snake_head)
+```
+After it - remove trailing element - to simulate snake movement
+```python
+if len(snake_list) > snake_length:
+    del snake_list[0]
+```
+Check that snake have not made collision to himself:
+```python
+for element in snake_list[:-1]:
+    if element == snake_head:
+        game_quit = True
+```
+In the if statement with food eating - add this code:
+```python
+if x1 == food_x and y1 == food_y:
+    food_x = round(random.randrange(0, conf.display_horizontal_size_x - conf.snake_size) / 10.0) * 10.0
+    food_y = round(random.randrange(0, conf.display_vertical_size_y - conf.snake_size) / 10.0) * 10.0
+    snake_length += 1
+    game_speed += 2
+```

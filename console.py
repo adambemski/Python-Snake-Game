@@ -11,5 +11,6 @@ def display_title_screen():
 
 
     ''')
+    print('written by Adam Bemski')
     print('2020 - based on example from: https://www.edureka.co/blog/snake-game-with-pygame/')
     print('')
