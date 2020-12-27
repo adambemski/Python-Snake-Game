@@ -17,6 +17,12 @@ def redraw_snake(snake_block, snake_list):
         pygame.draw.rect(dis, conf.blue, [item[0], item[1], snake_block, snake_block])
 
 
+def show_score(score):
+    score_font = pygame.font.SysFont("comicsansms", 20)
+    value = score_font.render("Score: " + str(score), True, conf.green)
+    dis.blit(value, [0, 0])
+
+
 console.display_title_screen()
 pygame.init()
 font_style = pygame.font.SysFont(None, 25)  # can be set after initialized pygame module
@@ -52,8 +58,12 @@ def game_session():
             message("Game Over - Press q - quit or r - replay", conf.red, font_style,
                     conf.display_horizontal_size_x,
                     conf.display_vertical_size_y)
+            show_score(snake_length - 1)
             pygame.display.update()
             for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    game_over = True
+                    game_quit = False
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_q:
                         game_over = True
@@ -101,6 +111,7 @@ def game_session():
                 game_quit = True
 
         redraw_snake(conf.snake_size, snake_list)
+        show_score(snake_length - 1)
         pygame.display.update()
 
         # food eating

@@ -202,3 +202,23 @@ if x1 == food_x and y1 == food_y:
     snake_length += 1
     game_speed += 2
 ```
+Redrawing whole snake is done inside function:
+```python
+def redraw_snake(snake_block, snake_list):
+    for item in snake_list:
+        pygame.draw.rect(dis, conf.blue, [item[0], item[1], snake_block, snake_block])
+```
+
+### Displaying score
+
+To display score add following function;
+```python
+def show_score(score):
+    score_font = pygame.font.SysFont("comicsansms", 20)
+    value = score_font.render("Score: " + str(score), True, conf.green)
+    dis.blit(value, [0, 0])
+```
+Place this calls before redrawing snake and at the game over while loop:
+```python
+show_score(snake_length - 1)
+```
