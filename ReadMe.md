@@ -147,5 +147,31 @@ if x1 == food_x and y1 == food_y:
     print("Food eaten!")
 ```
 
+### Game replay
 
+To allow to replay the game after loosing put entire while loop inside function **game_session()**.
+Additionally at the first part of the function add following - nested while loop:
+```python
+while game_quit is True:
+    dis.fill(conf.black)
+    message("Game Over - Press q for quit or c for replay", conf.red, font_style,
+            conf.display_horizontal_size_x,
+            conf.display_vertical_size_y)
+    pygame.display.update()
+    for event in pygame.event.get():
+        print(event)
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_q:
+                print('The End...')
+                game_over = True
+                game_quit = False
+            if event.key == pygame.K_c:
+                print('New game!')
+                game_session()  # recursive call of entire game
+```
 
+Now on the top level call game_session()
+```python
+if __name__ == "__main__":
+    game_session()
+```
