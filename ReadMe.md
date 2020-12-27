@@ -117,3 +117,11 @@ while game_over is False:
     clock.tick(30)
 ```
 
+### Hitting boundaries
+
+Snake game is finished when player hits the boundaries. To realize this add this if inside while loop:
+```python
+if x1 >= display_horizontal_size_x or x1 < 0 or y1 >= display_vertical_size_y or y1 < 0:
+    game_over = True
+```
+At this stage to clean up code structure it was introduced configuration ini file.
