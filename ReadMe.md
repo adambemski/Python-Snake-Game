@@ -2,6 +2,8 @@
 
 - Snake Game implementation in Python 3.
 
+![Game Screen](docs/snake_screen.png?raw=true)
+
 Examples based on:
 - [edureka](https://www.edureka.co/blog/snake-game-with-pygame/)
 
